@@ -9,7 +9,6 @@ vector<int> prefix_function(const string& s)
             if (s[i] == s[len])
             {
                 len++;
-                break;
             }
             if (len == 0)
                 break;
@@ -17,5 +16,7 @@ vector<int> prefix_function(const string& s)
         }
         p[i + 1] = len;
     }
+    int a = 5;
+    
     return p;
 }
