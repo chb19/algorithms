@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Cycle detection
+//   sets cycle detection to true if undirected graph g contains cycle
+//   Time cimplexity: O(n + m)
 vector<vector<int>> g;
 vector<char> color;
 bool cycle_found;
