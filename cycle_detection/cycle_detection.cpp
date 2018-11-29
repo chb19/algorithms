@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<vector<int> > g;
 vector<char> color;
 vector<int> p;
 bool cycle_found;
