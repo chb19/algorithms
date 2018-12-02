@@ -1,10 +1,15 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <vector>
+#include <iostream>
 using namespace std;
 
 vector<vector<int> > g;
 vector<char> color;
 vector<int> p, cycle;
-bool cycle_found;
+// Cycle detection
+//   detects cycle in undirected graph g
+//   if some connected component has more then one cycle - it correctly detects at least one of them
+//   Time cimplexity: O(n + m)
 
 void dfs(int u, int parent)
 {
@@ -25,7 +30,10 @@ void dfs(int u, int parent)
             cycle.push_back(w);
         }
         if (color[v] == 0)
-            dfs(v, u);
+        {
+            p[v] = u;
+            dfs(v, u); // replace to dfs(v, -1) for directed graphs
+        }
     }
     color[u] = 2;
 }
@@ -36,7 +44,7 @@ int main()
     cin >> n >> m;
     g.resize(n);
     color.resize(n);
-    p.resize(n);
+    p.assign(n, -1);
     for (int i = 0; i < m; i++)
     {
         int u, v;
@@ -48,7 +56,9 @@ int main()
     for (int i = 0; i < n; i++)
     {
         if (not color[i])
-            dfs(i, -1);
+        {
+            dfs(i, - 1);
+        }
     }
 
     reverse(cycle.begin(), cycle.end());
@@ -58,6 +68,5 @@ int main()
     {
         cout << v + 1 << " ";
     }
-
     return 0;
 }
