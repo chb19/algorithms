@@ -3,7 +3,7 @@ using namespace std;
 
 vector<vector<int> > g;
 vector<char> color;
-vector<int> p;
+vector<int> p, cycle;
 bool cycle_found;
 
 void dfs(int u, int parent)
@@ -17,11 +17,12 @@ void dfs(int u, int parent)
             int w = u;
             while(w != v)
             {
-                cout << w + 1 << " ";
+                color[w] = 2;
+                cycle.push_back(w);
                 w = p[w];
             }
-            cout << v + 1 << endl;
-            exit(0);
+            color[w] = 2;
+            cycle.push_back(w);
         }
         if (color[v] == 0)
             dfs(v, u);
@@ -49,6 +50,14 @@ int main()
         if (not color[i])
             dfs(i, -1);
     }
-    cout << (cycle_found? "YES" : "NO");
+
+    reverse(cycle.begin(), cycle.end());
+
+    cout << cycle.size() << endl;
+    for(int v : cycle)
+    {
+        cout << v + 1 << " ";
+    }
+
     return 0;
 }
