@@ -1,6 +1,13 @@
-vector<int> prefix_function(const string& s)
+// Prefix function
+//   one-indexed
+//   returns vector p such that p[i] = length of longest prefix s that is a proper suffix of s[0..i)
+//   Time complexity: O(n)
+#include <vector>
+#include <string>
+
+std::vector<int> prefix_function(const std::string& s)
 {
-    vector<int> p(s.length() + 1);
+    std::vector<int> p(s.length() + 1);
     int len = 0;
     for (int i = 1; i < s.length(); i++)
     {
